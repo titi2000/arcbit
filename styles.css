@@ -1,0 +1,129 @@
+/* Global Styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f0f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    padding: 60px 20px; /* Adjusted padding to move titles up */
+    background: linear-gradient(to right, #007aff, #34c759);
+    color: white;
+    clip-path: ellipse(100% 50% at 50% 0%);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 4em;
+    font-weight: 600;
+}
+
+header p {
+    font-size: 1.2em;
+    font-weight: 300;
+    margin-top: 10px; /* Reduced margin-top */
+}
+
+/* Logo Styles */
+.logo {
+    display: block;
+    margin: 20px auto; /* Center the logo and add margin */
+    max-width: 200px; /* Adjust the maximum width as needed */
+}
+
+/* Section Styles */
+section {
+    margin: 40px 0; /* Adjusted margin */
+    text-align: center;
+}
+
+section h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px; /* Reduced margin-bottom */
+    font-weight: 600;
+    color: #007aff;
+}
+
+.description p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 10px; /* Reduced margin-bottom */
+}
+
+/* Screenshot Styles */
+.screenshots {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.screenshots img {
+    max-width: 50%; /* Reduce the size by 15% */
+    height: auto;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.screenshots img:hover {
+    transform: scale(1.05);
+}
+
+/* Download Links Styles */
+.downloads ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.downloads li {
+    margin: 10px 0;
+}
+
+.downloads a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007aff;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.downloads a:hover {
+    background-color: #005bb5;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #007aff;
+    color: white;
+    margin-top: 50px;
+}
+
+/* Form Container Styles */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+iframe {
+    border: 0;
+}
