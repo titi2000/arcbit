@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socks - Téléchargement du jeu</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Socks</h1>
+        <p>Bienvenue sur le site officiel de Socks! Achetez le jeu pour votre plateforme préférée ci-dessous.</p>
+    </header>
+
+    <div class="container">
+        <section class="description">
+            <h2>À propos du jeu</h2>
+            <p>Socks est un jeu captivant où vous incarnez une chaussette aventureuse. Explorez divers environnements pour retrouver votre partenaire perdu.</p>
+            <p>Disponible pour Windows, MacOS, Linux et Raspberry Pi.</p>
+            <p><strong>Socks est développé par Arcbit Studio.</strong></p>
+        </section>
+
+        <section class="screenshots">
+            <h2>Captures d'écran</h2>
+            <img src="screenshot1.jpg" alt="Capture d'écran 1">
+            <img src="screenshot2.jpg" alt="Capture d'écran 2">
+        </section>
+
+        <section class="purchase">
+            <h2>Acheter</h2>
+            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+            <stripe-buy-button
+              buy-button-id="buy_btn_1PYv60HDVZEXtSaXiIOiYpRz"
+              publishable-key="pk_live_51PYrXdHDVZEXtSaX6pM3BW69k9kOf9BVcTpucyxbAtajAtZ9qmf78tfe4UnCg38wVvVt8Y9BILb82ClPlthwO1Aa00Zn47d59s">
+            </stripe-buy-button>
+        </section>
+    </div>
+   
+    <footer>
+        <p>&copy; 2024 Socks. Tous droits réservés. Développé par Arcbit Studio.</p>
+    </footer>
+</body>
+
+</html>
