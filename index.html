@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arcbit Studio</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,7 +40,7 @@
             <div>
                 <h3>Socks</h3>
                 <p>Un jeu passionnant inspirée du quotidien de chacun.</p>
-                <button onclick="location.href='http://arcbit.fr/socks'">En savoir plus</button
+                <button id="socks-button" onclick="location.href='http://arcbit.fr/socks'">En savoir plus</button>
             </div>
             <div>
                 <h3>Beta</h3>
@@ -57,6 +63,22 @@
     <footer>
         <p>&copy; 2024 Arcbit Studio. Tous droits réservés.</p>
     </footer>
+
+    <script>
+        // Date actuelle
+        const currentDate = new Date();
+
+        // Date de référence
+        const enableDate = new Date('2024-07-08T00:00:00');
+
+        // Sélection du bouton Socks
+        const socksButton = document.getElementById('socks-button');
+
+        // Désactiver le bouton si la date actuelle est avant la date de référence
+        if (currentDate < enableDate) {
+            socksButton.classList.add('disabled');
+        }
+    </script>
 </body>
 
 </html>
