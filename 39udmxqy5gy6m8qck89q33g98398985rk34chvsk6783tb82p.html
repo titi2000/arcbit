@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Téléchargement automatique</title>
+</head>
+<body>
+  <h1>Téléchargement automatique dans 5 secondes...</h1>
+
+  <script>
+    // Fonction pour rediriger vers arcbit.fr après le téléchargement
+    function redirigerVersArcbit() {
+      window.location.href = 'https://arcbit.fr';
+    }
+
+    // Décompte de 5 secondes avant le téléchargement
+    setTimeout(function() {
+      // Créer un lien de téléchargement
+      var link = document.createElement('a');
+      link.href = 'arcbit/socks.zip';
+      link.download = 'socks.zip';
+      document.body.appendChild(link);
+      link.click();
+
+      // Redirection vers arcbit.fr après 1 seconde
+      setTimeout(redirigerVersArcbit, 1000);
+    }, 5000); // 5000 millisecondes = 5 secondes
+  </script>
+</body>
+</html>
