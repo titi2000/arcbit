@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #eb6e00; /* Couleur dominante du logo */
+            background-color: #ecf0f1; /* Couleur dominante du logo */
             color: #ecf0f1;
             display: flex;
             flex-direction: column;
@@ -161,6 +161,10 @@
         const gaugeFill = document.getElementById('gaugeFill');
         const randomNumberHeader = document.getElementById('randomNumberHeader');
 
+        let countdownInterval;
+        let randomHeaderInterval;
+        let randomLedInterval;
+
         // Fonction pour arrêter tous les sons
         function stopAllSounds() {
             lunchSound.pause();
@@ -173,9 +177,41 @@
             prelunchSound.currentTime = 0;
         }
 
+        // Fonction pour lancer un compte à rebours
+        function startCountdown() {
+            let countdown = 10;
+            clearInterval(randomHeaderInterval);
+            clearInterval(randomLedInterval);
+
+            countdownInterval = setInterval(() => {
+                countdown--;
+                randomNumberHeader.textContent = countdown;
+                ledPanel.textContent = String(countdown).padStart(3, '0');
+                
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    startRandomIntervals();
+                }
+            }, 1000);
+        }
+
+        // Fonction pour redémarrer les intervalles aléatoires après le compte à rebours
+        function startRandomIntervals() {
+            randomHeaderInterval = setInterval(() => {
+                const randomHeaderNumber = Math.floor(Math.random() * (120 - 90 + 1)) + 90;
+                randomNumberHeader.textContent = randomHeaderNumber;
+            }, 1000);
+
+            randomLedInterval = setInterval(() => {
+                const randomNumber = Math.floor(Math.random() * 1000);
+                ledPanel.textContent = String(randomNumber).padStart(3, '0');
+            }, 2000);
+        }
+
         // Événements des boutons
         greenButton.addEventListener('click', () => {
             stopAllSounds();
+            startCountdown();
             lunchSound.play();
         });
 
@@ -194,20 +230,8 @@
             prelunchSound.play();
         });
 
-        // Mettre à jour la jauge (pour tester, ici on peut ajouter une logique pour changer la jauge)
-        gaugeFill.style.width = '70%';
-
-        // Mettre à jour le panneau LED avec des numéros aléatoires
-        setInterval(() => {
-            const randomNumber = Math.floor(Math.random() * 1000);
-            ledPanel.textContent = String(randomNumber).padStart(3, '0');
-        }, 2000); // Change tous les 2 secondes
-
-        // Mettre à jour le numéro aléatoire en haut toutes les secondes
-        setInterval(() => {
-            const randomHeaderNumber = Math.floor(Math.random() * (120 - 90 + 1)) + 90;
-            randomNumberHeader.textContent = randomHeaderNumber;
-        }, 1000); // Change toutes les secondes
+        // Initialiser les intervalles aléatoires
+        startRandomIntervals();
     </script>
 </body>
 </html>
