@@ -1,84 +1,96 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcbit Studio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Contrôle Audio</title>
     <style>
-        .disabled {
-            pointer-events: none;
-            opacity: 0.5;
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .button {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            border: none;
+            border-radius: 50%;
+            position: relative;
+        }
+        .green-button {
+            background-color: green;
+        }
+        .orange-button {
+            background-color: orange;
+        }
+        .red-button {
+            background-color: red;
+        }
+        .button img {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
-
 <body>
-    <header>
-        <h1>Bienvenue chez Arcbit Studio</h1>
-        <p>Découvrez nos jeux et nos projets en développement.</p>
-    </header>
-
     <div class="container">
-        <section class="logo-section">
-            <img src="logo.png" alt="Arcbit Studio Logo" class="center-logo">
-        </section> <!-- Fermeture de section ajoutée -->
-        
-        <section>
-            <h2>À propos de nous</h2>
-            <p>Arcbit Studio est un studio de développement de jeux vidéo passionné par la création d'expériences immersives et captivantes.</p>
-        </section>
-
-        <section>
-            <h2>Nos Projets</h2>
-            <div>
-                <h3>Froggi</h3>
-                <p>Un jeu passionnant où vous incarnez une grenouille aventurière. Traversez les routes, les voies ferrées et les cours d'eaux pour atteindre votre but.</p>
-                <button onclick="location.href='http://arcbit.fr/froggi'">En savoir plus</button>
-            </div>
-            <div>
-                <h3>Socks</h3>
-                <p>Un jeu passionnant inspirée du quotidien de chacun.</p>
-                <button id="socks-button" onclick="location.href='http://arcbit.fr/socks'">En savoir plus</button>
-            </div>
-            <div>
-                <h3>Beta</h3>
-                <p>Découvrez nos projets en cours de développement et participez à nos phases de test beta.</p>
-                <button onclick="location.href='http://arcbit.fr/beta'">Participer à la Beta</button>
-            </div>
-        </section>
-
-        <section>
-            <h2>Avis</h2>
-            <p>Bientôt</p>
-        </section>
-
-        <section>
-            <h2>Contactez-nous</h2>
-            <p>Vous avez des questions ou des suggestions ? N'hésitez pas à nous contacter à <a href="mailto:contact@arcbit.fr">contact@arcbit.fr</a>.</p>
-        </section>
+        <button id="greenButton" class="button green-button"></button>
+        <button id="orangeButton" class="button orange-button">
+            <img src="flame-icon.png" alt="Flame Icon">
+        </button>
+        <button id="redButton" class="button red-button"></button>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Arcbit Studio. Tous droits réservés.</p>
-    </footer>
+    <audio id="lunchSound" src="lunch.mp3"></audio>
+    <audio id="fireSound" src="fire.mp3" loop></audio>
+    <audio id="alarmSound" src="alarm.mp3" loop></audio>
 
     <script>
-        // Date actuelle
-        const currentDate = new Date();
+        const greenButton = document.getElementById('greenButton');
+        const orangeButton = document.getElementById('orangeButton');
+        const redButton = document.getElementById('redButton');
+        const lunchSound = document.getElementById('lunchSound');
+        const fireSound = document.getElementById('fireSound');
+        const alarmSound = document.getElementById('alarmSound');
 
-        // Date de référence
-        const enableDate = new Date('2024-07-08T00:00:00');
-
-        // Sélection du bouton Socks
-        const socksButton = document.getElementById('socks-button');
-
-        // Désactiver le bouton si la date actuelle est avant la date de référence
-        if (currentDate < enableDate) {
-            socksButton.classList.add('disabled');
+        // Fonction pour arrêter tous les sons
+        function stopAllSounds() {
+            lunchSound.pause();
+            fireSound.pause();
+            alarmSound.pause();
+            lunchSound.currentTime = 0;
+            fireSound.currentTime = 0;
+            alarmSound.currentTime = 0;
         }
+
+        // Événements des boutons
+        greenButton.addEventListener('click', () => {
+            stopAllSounds();
+            lunchSound.play();
+        });
+
+        orangeButton.addEventListener('click', () => {
+            stopAllSounds();
+            fireSound.play();
+        });
+
+        redButton.addEventListener('click', () => {
+            stopAllSounds();
+            alarmSound.play();
+        });
     </script>
 </body>
-
 </html>
