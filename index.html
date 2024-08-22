@@ -3,30 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de Bord</title>
+    <title>Tableau de Bord Professionnel</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1c1c1c;
+            color: #ecf0f1;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #2c3e50;
-            color: #ecf0f1;
         }
 
         .dashboard {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #34495e;
+            background-color: #2b2b2b;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .button-panel, .lever-panel {
+        .header {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .button-panel, .lever-panel, .gauge-panel {
             display: flex;
             justify-content: space-around;
             margin-bottom: 20px;
@@ -39,24 +49,19 @@
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            background-color: #7f8c8d;
+            background-color: #444;
             box-shadow: inset 0px -4px 8px rgba(0, 0, 0, 0.3), 0px 4px 6px rgba(0, 0, 0, 0.3);
-            transition: background-color 0.3s, box-shadow 0.3s;
+            transition: box-shadow 0.3s;
         }
 
         .button:active {
             box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
         }
 
-        .button.green-button { background-color: #27ae60; }
-        .button.orange-button { background-color: #e67e22; }
-        .button.red-button { background-color: #c0392b; }
-        .button.purple-button { background-color: #8e44ad; }
-
         .lever {
             width: 20px;
             height: 60px;
-            background-color: #bdc3c7;
+            background-color: #7f8c8d;
             border-radius: 10px;
             position: relative;
             cursor: pointer;
@@ -70,7 +75,7 @@
             left: 50%;
             width: 30px;
             height: 30px;
-            background-color: #7f8c8d;
+            background-color: #555;
             border-radius: 50%;
             transform: translateX(-50%);
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
@@ -79,21 +84,54 @@
         .lever.up { transform: rotate(-30deg); }
         .lever.down { transform: rotate(30deg); }
 
+        .gauge {
+            width: 300px;
+            height: 30px;
+            background-color: #555;
+            border-radius: 15px;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .gauge-fill {
+            height: 100%;
+            background-color: #27ae60;
+            border-radius: 15px 0 0 15px;
+            width: 50%;
+            transition: width 0.5s;
+        }
+
+        .led-panel {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 2rem;
+            color: #d35400;
+            background-color: #2b2b2b;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: inset 0px -4px 8px rgba(0, 0, 0, 0.5), 0px 4px 6px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 <body>
     <div class="dashboard">
+        <div id="randomNumberHeader" class="header">100</div>
+        <div class="led-panel" id="ledPanel">000</div>
         <div class="button-panel">
-            <button id="greenButton" class="button green-button"></button>
-            <button id="orangeButton" class="button orange-button"></button>
-            <button id="redButton" class="button red-button"></button>
-            <button id="purpleButton" class="button purple-button"></button>
+            <button id="greenButton" class="button"></button>
+            <button id="orangeButton" class="button"></button>
+            <button id="redButton" class="button"></button>
+            <button id="purpleButton" class="button"></button>
         </div>
         <div class="lever-panel">
             <div class="lever up"></div>
             <div class="lever down"></div>
             <div class="lever up"></div>
             <div class="lever down"></div>
+        </div>
+        <div class="gauge-panel">
+            <div class="gauge">
+                <div id="gaugeFill" class="gauge-fill"></div>
+            </div>
         </div>
     </div>
 
@@ -111,6 +149,9 @@
         const fireSound = document.getElementById('fireSound');
         const alarmSound = document.getElementById('alarmSound');
         const prelunchSound = document.getElementById('prelunchSound');
+        const ledPanel = document.getElementById('ledPanel');
+        const gaugeFill = document.getElementById('gaugeFill');
+        const randomNumberHeader = document.getElementById('randomNumberHeader');
 
         // Fonction pour arrêter tous les sons
         function stopAllSounds() {
@@ -144,6 +185,21 @@
             stopAllSounds();
             prelunchSound.play();
         });
+
+        // Mettre à jour la jauge (pour tester, ici on peut ajouter une logique pour changer la jauge)
+        gaugeFill.style.width = '70%';
+
+        // Mettre à jour le panneau LED avec des numéros aléatoires
+        setInterval(() => {
+            const randomNumber = Math.floor(Math.random() * 1000);
+            ledPanel.textContent = String(randomNumber).padStart(3, '0');
+        }, 2000); // Change tous les 2 secondes
+
+        // Mettre à jour le numéro aléatoire en haut toutes les secondes
+        setInterval(() => {
+            const randomHeaderNumber = Math.floor(Math.random() * (120 - 90 + 1)) + 90;
+            randomNumberHeader.textContent = randomHeaderNumber;
+        }, 1000); // Change toutes les secondes
     </script>
 </body>
 </html>
