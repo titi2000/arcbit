@@ -35,6 +35,9 @@
         .red-button {
             background-color: red;
         }
+        .purple-button {
+            background-color: purple;
+        }
         .button img {
             width: 50px;
             height: 50px;
@@ -52,28 +55,34 @@
             <img src="flame-icon.png" alt="Flame Icon">
         </button>
         <button id="redButton" class="button red-button"></button>
+        <button id="purpleButton" class="button purple-button"></button>
     </div>
 
     <audio id="lunchSound" src="lunch.mp3"></audio>
     <audio id="fireSound" src="fire.mp3" loop></audio>
     <audio id="alarmSound" src="alarm.mp3" loop></audio>
+    <audio id="prelunchSound" src="prelunch.mp3"></audio>
 
     <script>
         const greenButton = document.getElementById('greenButton');
         const orangeButton = document.getElementById('orangeButton');
         const redButton = document.getElementById('redButton');
+        const purpleButton = document.getElementById('purpleButton');
         const lunchSound = document.getElementById('lunchSound');
         const fireSound = document.getElementById('fireSound');
         const alarmSound = document.getElementById('alarmSound');
+        const prelunchSound = document.getElementById('prelunchSound');
 
         // Fonction pour arrêter tous les sons
         function stopAllSounds() {
             lunchSound.pause();
             fireSound.pause();
             alarmSound.pause();
+            prelunchSound.pause();
             lunchSound.currentTime = 0;
             fireSound.currentTime = 0;
             alarmSound.currentTime = 0;
+            prelunchSound.currentTime = 0;
         }
 
         // Événements des boutons
@@ -90,6 +99,11 @@
         redButton.addEventListener('click', () => {
             stopAllSounds();
             alarmSound.play();
+        });
+
+        purpleButton.addEventListener('click', () => {
+            stopAllSounds();
+            prelunchSound.play();
         });
     </script>
 </body>
