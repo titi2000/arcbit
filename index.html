@@ -3,59 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contrôle Audio</title>
+    <title>Tableau de Bord</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: #2c3e50;
+            color: #ecf0f1;
         }
-        .container {
+
+        .dashboard {
             display: flex;
-            gap: 20px;
+            flex-direction: column;
+            align-items: center;
+            background-color: #34495e;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
         }
+
+        .button-panel, .lever-panel {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
         .button {
-            width: 100px;
-            height: 100px;
-            cursor: pointer;
+            width: 70px;
+            height: 70px;
             border: none;
             border-radius: 50%;
+            cursor: pointer;
+            background-color: #7f8c8d;
+            box-shadow: inset 0px -4px 8px rgba(0, 0, 0, 0.3), 0px 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .button:active {
+            box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .button.green-button { background-color: #27ae60; }
+        .button.orange-button { background-color: #e67e22; }
+        .button.red-button { background-color: #c0392b; }
+        .button.purple-button { background-color: #8e44ad; }
+
+        .lever {
+            width: 20px;
+            height: 60px;
+            background-color: #bdc3c7;
+            border-radius: 10px;
             position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
-        .green-button {
-            background-color: green;
-        }
-        .orange-button {
-            background-color: orange;
-        }
-        .red-button {
-            background-color: red;
-        }
-        .purple-button {
-            background-color: purple;
-        }
-        .button img {
-            width: 50px;
-            height: 50px;
+
+        .lever::before {
+            content: '';
             position: absolute;
-            top: 50%;
+            top: -10px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background-color: #7f8c8d;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
         }
+
+        .lever.up { transform: rotate(-30deg); }
+        .lever.down { transform: rotate(30deg); }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <button id="greenButton" class="button green-button"></button>
-        <button id="orangeButton" class="button orange-button">
-            <img src="flame-icon.png" alt="Flame Icon">
-        </button>
-        <button id="redButton" class="button red-button"></button>
-        <button id="purpleButton" class="button purple-button"></button>
+    <div class="dashboard">
+        <div class="button-panel">
+            <button id="greenButton" class="button green-button"></button>
+            <button id="orangeButton" class="button orange-button"></button>
+            <button id="redButton" class="button red-button"></button>
+            <button id="purpleButton" class="button purple-button"></button>
+        </div>
+        <div class="lever-panel">
+            <div class="lever up"></div>
+            <div class="lever down"></div>
+            <div class="lever up"></div>
+            <div class="lever down"></div>
+        </div>
     </div>
 
     <audio id="lunchSound" src="lunch.mp3"></audio>
