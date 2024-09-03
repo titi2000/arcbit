@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DédiPass Integration</title>
+</head>
+<body>
+    <!-- HTML code to display payment form -->
+    <div data-dedipass="240f253e64027d557efb9259699d4853" data-dedipass-custom=""></div>
+    <script src="//api.dedipass.com/v1/pay.js"></script>
+
+    <!-- PHP code for processing payment -->
+    <?php
+    $code = isset($_POST['code']) ? preg_replace('/[^a-zA-Z0-9]+/', '', $_POST['code']) : '';
+    if (empty($code)) {
+        echo 'Vous devez saisir un code';
+    } else {
+        $dedipass = file_get_contents('http://api.dedipass.com/v1/pay/?public_key=240f253e64027d557efb9259699d4853&private_key=f771e6a40deaaf020b599605f29cdd341ef24e6e&code=' . $code);
+        $dedipass = json_decode($dedipass);
+        if ($dedipass->status == 'success') {
+            // Le transaction est validée et Payée.
+            echo 'La transaction a été validée et payée.';
+        } else {
+            // Le code est invalide
+            echo 'Le code ' . htmlspecialchars($code) . ' est invalide';
+        }
+    }
+    ?>
+</body>
+</html>
